@@ -1,18 +1,17 @@
 package scraper
 
 import (
-	"github.com/IsroilMukhitdinov/go_project/pkg/entities"
 	"github.com/gocolly/colly"
 )
 
-func Scrap(nameQuery string, valueQuery string, url string) *[]entities.Currency {
+func Scrap(nameQuery string, valueQuery string, url string) (*[]string, *[]string) {
 
 	var names []string
 	var values []string
 
-	var list []entities.Currency
+	// var list []entities.Currency
 
-	c := colly.NewCollector(colly.AllowedDomains("pultop.uz"))
+	c := colly.NewCollector()
 
 	c.OnHTML(nameQuery, func(h *colly.HTMLElement) {
 		names = append(names, h.Text)
@@ -22,16 +21,16 @@ func Scrap(nameQuery string, valueQuery string, url string) *[]entities.Currency
 		values = append(values, h.Text)
 	})
 
-	defer func() {
-		for i, name := range names {
-			list = append(list, entities.Currency{
-				CurrencyName:  name,
-				CurrencyValue: values[i],
-			})
-		}
-	}()
+	// defer func() {
+	// 	for i, name := range names {
+	// 		list = append(list, entities.Currency{
+	// 			CurrencyName:  name,
+	// 			CurrencyValue: values[i],
+	// 		})
+	// 	}
+	// }()
 
 	c.Visit(url)
 
-	return &list
+	return &names, &values
 }
