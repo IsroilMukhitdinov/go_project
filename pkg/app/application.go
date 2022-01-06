@@ -13,6 +13,8 @@ func main() {
 
 	http.HandleFunc("/pultop", source.Pultop)
 	http.HandleFunc("/ipoteka", source.Ipoteka)
+	http.HandleFunc("/agro", source.Agrobank)
+	http.HandleFunc("/ravnaq", source.Ravnaqbank)
 
 	log.Println("Started Listening on Port ", port)
 
