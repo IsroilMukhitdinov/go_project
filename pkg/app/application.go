@@ -11,6 +11,16 @@ const port = ":7890"
 
 func main() {
 
+	// http.HandleFunc("/home", func(rw http.ResponseWriter, r *http.Request) {
+	// 	parsed, err := template.ParseFiles("./templates/home.html")
+
+	// 	if err != nil {
+	// 		log.Fatal(err)
+	// 	}
+
+	// 	parsed.Execute(rw, nil)
+	// })
+
 	http.HandleFunc("/pultop", source.Pultop)
 	http.HandleFunc("/ipoteka", source.Ipoteka)
 	http.HandleFunc("/agro", source.Agrobank)

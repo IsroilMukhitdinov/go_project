@@ -3,6 +3,7 @@ package source
 import (
 	"net/http"
 
+	"github.com/IsroilMukhitdinov/go_project/data"
 	"github.com/IsroilMukhitdinov/go_project/pkg/entities"
 	"github.com/IsroilMukhitdinov/go_project/pkg/handler"
 	"github.com/IsroilMukhitdinov/go_project/pkg/scraper"
@@ -29,4 +30,6 @@ func Ipoteka(response http.ResponseWriter, request *http.Request) {
 		BankName: "Ipoteka Bank",
 		List:     temp,
 	})
+
+	data.OpenAndWrite("ipoteka", &temp)
 }
